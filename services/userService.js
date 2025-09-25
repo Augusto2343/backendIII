@@ -1,4 +1,5 @@
 import { userRepository } from "../repositories/user-repository.js";
+import CustomError from "../utils/custom-error.js";
 import { createHash, generateUserFaker } from "../utils/userUtils.js";
 
 class UserService {
@@ -9,16 +10,16 @@ class UserService {
         try {
             return await this.repo.getAll()
         } catch (error) {
-            throw new Error(error)           
+            throw error           
         }
     }
     getById= async(id)=>{
         try {
-            const pet = await this.repo.getById(id);
-            if(!pet) throw new Error("Not found");
-            return pet;
+            const user = await this.repo.getById(id);
+            if(!user || user == {}) throw new CustomError("Not found",404);
+            return user;
         } catch (error) {
-            throw new Error(error)            
+            throw error            
         }
     }
     createMockUser = async(cant)=>{
@@ -39,12 +40,12 @@ class UserService {
             }
             return await this.repo.create(arrayUsers)
         }catch(e){
-            throw new Error(e);
+            throw e;
         }
     }
     create= async(body)=>{
         try {
-            if (!body.password  || !body.first_name || !body.email) throw new Error("Datos faltantes o incorrectos");
+            if (!body.password  || !body.first_name || !body.email) throw new CustomError("Datos inexistentes",400);
             let role = body.role
             if(role != "admin" || role !="user") role = "user"
             return await this.repo.create({
@@ -54,22 +55,22 @@ class UserService {
                 role:role
             })
         } catch (error) {
-            throw new Error(error)            
+            throw error            
         }
     }
     update= async(id,body)=>{
         try {
-            if(!id || !body) throw new Error("Faltan datos");
+            if(!id || !body) throw  new CustomError("Faltan datos",400);;
             return await this.repo.update(id,body)
         } catch (error) {
-            throw new Error(error)            
+            throw error            
         }
     }
     delete= async(id)=>{
         try {
             return await this.repo.delete(id)
         } catch (error) {
-            throw new Error(error)           
+            throw error           
         }
     }
 }

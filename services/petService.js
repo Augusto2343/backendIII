@@ -1,4 +1,6 @@
+import mongoose from "mongoose";
 import { petRepository } from "../repositories/pet-repository.js";
+import CustomError from "../utils/custom-error.js";
 import { generatePetFaker } from "../utils/petUtils.js";
 class PetService {
     constructor(repository){
@@ -14,8 +16,11 @@ class PetService {
 
     getById= async(id)=>{
         try {
-            const pet = await this.repo.getById(id);
-            if(!pet) throw new Error("Not found");
+            const searchId =new  mongoose.Types.ObjectId(id)
+            const pet = await this.repo.getById(searchId);
+            console.log(pet, typeof(pet));
+            
+            if(!pet || pet == {} ) throw new CustomError("Not found",404);
             return pet;
         } catch (error) {
             throw error            
@@ -30,7 +35,7 @@ class PetService {
     }
     update= async(id,body)=>{
         try {
-            if(!id || !body) throw new Error("Faltan datos");
+            if(!id || !body) throw  new CustomError("Faltan datos",400);
             return await this.repo.update(id,body)
         } catch (error) {
             throw error            
@@ -38,7 +43,9 @@ class PetService {
     }
     delete= async(id)=>{
         try {
-            return await this.repo.delete(id)
+            const response = await this.repo.delete(id)
+            if(!response || response == "") throw new CustomError("No encontrado",404);
+            return response
         } catch (error) {
             throw error            
         }
@@ -58,7 +65,7 @@ class PetService {
             }
             return await this.repo.create(arrayPets)
         }catch(e){
-            throw new Error(e);
+            throw e;
         }
     }
 }

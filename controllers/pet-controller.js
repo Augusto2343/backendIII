@@ -46,5 +46,13 @@ class PetController {
             next(error);
         }
     }
+    delete = async(req,res,next) =>{
+       try {
+            const {id} = req.params;
+            return  res.send(await this.service.delete(id))
+        } catch (error) {
+            next(error);
+        }
+    }
 }
 export const petController = new PetController(petService);

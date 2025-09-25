@@ -3,8 +3,11 @@ import { petController } from "../controllers/pet-controller.js";
 
 const route = Router();
 
-route.get("/",petController.getAll);
-route.get("/:id",petController.getById);
-route.post("/",petController.create);
+route.route("/:id")
+    .get(petController.getById)
+    .delete(petController.delete)
+route.route("/")
+   .delete(petController.create)
+   .get(petController.getAll)
 
 export default route;

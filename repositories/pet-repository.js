@@ -8,14 +8,14 @@ class PetRepository {
         try {
             return await this.dao.getAll();
         } catch (error) {
-            throw new Error(error)
+            throw error
         }
     }
     getById = async(id) =>{
         try {
             return await this.dao.getById(id);
         } catch (error) {
-            throw new Error(error)
+            throw error
         }
     }
     
@@ -23,7 +23,7 @@ class PetRepository {
         try {
             return await this.dao.create(body);
         } catch (error) {
-            throw new Error(error)
+            throw error
         }
     }
 
@@ -31,7 +31,15 @@ class PetRepository {
         try {
             return await this.dao.getByIdAndUpdate(id,body);
         } catch (error) {
-            throw new Error(error)
+            throw error;
+        }
+    }
+    delete = async(id) =>{
+        try {
+            return await this.dao.delete(id);
+        } catch (error) {
+            throw error;
+            
         }
     }
 }

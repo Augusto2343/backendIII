@@ -7,15 +7,15 @@ export default class MongoDao {
             return await this.model.find({});
 
         } catch (error) {
-            throw new Error(error);
+            throw error;
         }
     }
     getById = async(id)=>{
         try {
-            return await this.model.find(id);
+            return await this.model.findOne(id);
 
         } catch (error) {
-            throw new Error(error);
+            throw error;
         }
     }
     create = async(body)=>{
@@ -24,7 +24,7 @@ export default class MongoDao {
             return await this.model.create(body);
 
         } catch (error) {
-            throw new Error(error);
+            throw error;
         }
     }
         update = async(id,body)=>{
@@ -32,7 +32,7 @@ export default class MongoDao {
             return await this.model.findByIdAndUpdate(id,body,{new:true});
 
         } catch (error) {
-            throw new Error(error);
+            throw error;
         }
     }
     delete = async(id)=>{
@@ -40,7 +40,7 @@ export default class MongoDao {
             return await this.model.findByIdAndDelete(id);
 
         } catch (error) {
-            throw new Error(error);
+            throw error;
         }
     }
 }
