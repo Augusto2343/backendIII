@@ -1,0 +1,73 @@
+paths:
+  /api/users:
+    get:
+      tags:
+        - Users
+      summary: Obtiene todos los usuarios
+      responses:
+        "200":
+          description: Los usuarios fueron obtenidos satisfactoriamente de la base de datos
+        "500":
+          description: No se pudieron obtener los usuarios de la base de datos
+    post:
+      tags:
+        - Users
+      summary: Crea un usuario
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        "201":
+          description: Usuario creado satisfactoriamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+
+  /api/users/{id}:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+    get:
+      tags:
+        - Users
+      summary: Obtiene un usuario por ID
+      responses:
+        "200":
+          description: Usuario obtenido exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "404":
+          description: No se encontró el usuario
+    put:
+      tags:
+        - Users
+      summary: Modifica un usuario por ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        "200":
+          description: Usuario modificado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+    delete:
+      tags:
+        - Users
+      summary: Elimina un usuario por ID
+      responses:
+        "204":
+          description: Usuario eliminado correctamente

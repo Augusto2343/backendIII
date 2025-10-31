@@ -4,8 +4,8 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "test:integracion": "mocha --timeout 20000 ./tests/integracion.test.js",
+    "start": "node ./src/server.js"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +16,13 @@
     "bcryptjs": "^3.0.2",
     "dotenv": "^17.2.2",
     "express": "^5.1.0",
-    "mongoose": "^8.18.2"
+    "mongoose": "^8.18.2",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "chai": "^6.2.0",
+    "mocha": "^11.7.4",
+    "supertest": "^7.1.4"
   }
 }

@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kubeservice
+spec:
+  selector:
+    app: kubeadoptapi
+  ports:
+    - port: 80
+      targetPort: 8000
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: kubeadoptapi
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: kubeadoptapi
+  template:
+    metadata:
+      labels:
+        app: kubeadoptapi
+    spec:
+      containers:
+        - name: kubecontainer
+          image: augustonoriega123/adoptionapp:1.0.0
+          ports:
+            - containerPort: 8000
+          env: 
+            - name: MONGO_URL
+              value: mongodb://localhost:27017/preentrega
+            - name: TEST_MONGO_URL
+              value: mongodb://localhost:27017/test
+            - name: PORT
+              value: "5000"
+            - name: SECRET_KEY
+              value: "1234"
+          imagePullPolicy: Always

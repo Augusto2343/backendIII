@@ -1,0 +1,31 @@
+components:
+  schemas:
+    User:
+      type: object
+      required:
+        - first_name
+        - last_name
+        - age
+        - email
+        - password
+      properties:
+        first_name:
+          type: string
+          description: nombre
+        last_name:
+          type: string
+          description: apellido
+        age:
+          type: integer
+          format: int32
+          description: edad
+        email:
+          type: string
+          format: email
+          description: direccion de correo
+        password:
+          type: string
+          description: contraseña
+        role:
+          type: string
+          description: rol

@@ -1,0 +1,13 @@
+components:
+  schemas:
+    UserResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          description: Código de la petición
+        message:
+          type: string
+          description: Estado de la petición
+        data:
+          $ref: '#/components/schemas/User'
