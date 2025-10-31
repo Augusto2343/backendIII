@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "test:integracion": "mocha --timeout 20000 ./tests/integracion.test.js",
-    "start": "nodemon ./src/server.js"
+    "start": "node ./src/server.js"
   },
   "keywords": [],
   "author": "",
