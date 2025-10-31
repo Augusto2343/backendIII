@@ -31,9 +31,9 @@ spec:
             - containerPort: 8000
           env: 
             - name: MONGO_URL
-              value: mongodb+srv://augustoxd2343@gmail.com:capi2025@cluster0.9s6datl.mongodb.net/preentrega?retryWrites=true&w=majority
+              value: mongodb+srv://augustodavidnoriega_db_user:capi2025@cluster0.9s6datl.mongodb.net/preentrega?retryWrites=true&w=majority
             - name: TEST_MONGO_URL
-              value: mongodb+srv://augustonoriega@gmail.com:capi2025@cluster0.9s6datl.mongodb.net/test?retryWrites=true&w=majority
+              value: mongodb+srv://augustodavidnoriega_db_user:capi2025@cluster0.9s6datl.mongodb.net/test?retryWrites=true&w=majority
             - name: PORT
               value: "5000"
             - name: SECRET_KEY

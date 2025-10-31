@@ -7,6 +7,8 @@ export const initMongoDB = async(db)=>{
                 await connect(config.TEST_MONGO_URL)
             }
             else{
+                console.log(config.MONGO_URL);
+                
                 await connect(config.MONGO_URL, {
                     serverSelectionTimeoutMS:300000,
                 });
