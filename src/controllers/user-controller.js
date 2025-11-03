@@ -25,7 +25,7 @@ class UserController {
     create = async(req,res,next)=>{
         try {
             const body = req.body
-            console.log(body);
+            
             
             return  res.send(await this.service.create(body))
         } catch (error) {
