@@ -18,6 +18,8 @@ route.get("/generateData/:cantPets/:cantUsers",async(req,res) =>{
         const petsAndUsers = {pets: petServiceResponse || [], users: userServiceResponse || []};
         res.status(201).send(petsAndUsers);
     } catch (error) {
+        console.log(error);
+        
         res.status(500).send({error: error.message});
     }
 })
