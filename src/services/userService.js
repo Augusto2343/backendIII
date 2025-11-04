@@ -45,10 +45,10 @@ class UserService {
             const arrayUsers =[]
             for (let i = 1; i <= cantidad; i++) {
                 let data = generateUserFaker();
-                console.log(data);
                 
-                data.password = createHash(data.password)
-                arrayUsers.push(data)
+                 let contrasenia = createHash(data.password);
+                 data.password =contrasenia
+                 arrayUsers.push(data)
             }
             return await this.repo.create(arrayUsers)
         }catch(e){

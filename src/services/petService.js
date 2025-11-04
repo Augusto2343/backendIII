@@ -22,7 +22,7 @@ class PetService {
         try {
             const searchId =new  mongoose.Types.ObjectId(id)
             const pet = await this.repo.getById(searchId);
-            console.log(pet, typeof(pet));
+            
             
             if(!pet || pet == {} ) throw new CustomError("Not found",404);
             return pet;
@@ -90,7 +90,7 @@ class PetService {
                 arrayPets.push(pet)
             }
             
-            console.log("Mascotitas:",arrayPets,"cantidad requerida",cantidad);
+            
             return arrayPets
             
         }catch(e){

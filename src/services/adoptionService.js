@@ -32,7 +32,7 @@ class AdoptionService {
             pet.adopted=true;
             const modifPet = await this.pet.update(newIdPet,pet);
             if(!modifPet) throw new CustomError("No se pudo actualizar el estado de la mascota");
-            console.log(modifPet);
+            
             return {mascota:modifPet,usuario:usr};
             
             

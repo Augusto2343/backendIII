@@ -9,13 +9,13 @@ import { errorHandler } from "./middlewares/errorHandler.js";
 import swaggerJSDoc from "swagger-jsdoc";
 import swaggerUiExpress from "swagger-ui-express";
 import { info } from "./docs/info.js";
-
+import cors from "cors";
 //Definición de app como aplicación de express
 const app = express();
 //configuración de express
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
-
+app.use(cors({origin:"*"}));
 //Configuración de swagger
 const specs = swaggerJSDoc(info);
 app.use("/apidocs",swaggerUiExpress.serve,swaggerUiExpress.setup(specs))
